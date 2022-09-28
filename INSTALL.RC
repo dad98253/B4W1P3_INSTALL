@@ -1,0 +1,108 @@
+#include "wslib\sulib.h"
+#include "wslib\gauge.h"
+#include "install.h"
+
+ID_APP  ICON   install.ico   /* use qa.ico for windows 2.x */
+
+DLG_EXIT DIALOG PRELOAD FIXED 104, 49, 114, 54
+STYLE WS_DLGFRAME | WS_POPUP
+FONT 8 "Helv"
+BEGIN
+    CONTROL "Application installation is not yet complete. Are you sure you want to exit Install?", -1, "static", SS_LEFT | WS_CHILD, 7, 5, 104, 28
+    CONTROL "OK", ID_OK, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 14, 35, 28, 14
+    CONTROL "Cancel", ID_CANCEL, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 68, 35, 27, 14
+END
+
+WINSETUP DIALOG PRELOAD FIXED 20, 31, 234, 111
+CAPTION "dialog.caption"
+FONT 8, "Helv"
+STYLE WS_BORDER | WS_CAPTION | WS_DLGFRAME | WS_SYSMENU | DS_MODALFRAME | WS_POPUP
+BEGIN
+    CONTROL "Installing Bible for Windows:", -1, "static", SS_LEFT | WS_CHILD, 24, 6, 192, 9
+    CONTROL "Continue", ID_OK, "button", BS_DEFPUSHBUTTON | WS_TABSTOP | WS_CHILD, 48, 94, 42, 12
+    CONTROL "Install will store into the following directory, which it will create on your hard disk.", 103, "static", SS_LEFT | WS_CHILD, 24, 18, 200, 19
+    CONTROL "If you want to install Bible for Windows in a different directory and/or drive. Type the name of the directory.", 104, "static", SS_LEFT | WS_CHILD, 24, 36, 200, 28
+    CONTROL "Click Continue to begin the installation.", 105, "static", SS_LEFT | WS_CHILD, 24, 65, 162, 8
+    CONTROL "Copy to:", 107, "static", SS_LEFT | WS_CHILD, 24, 79, 30, 8
+    CONTROL "", ID_EDIT1, "edit", ES_LEFT | ES_UPPERCASE | WS_BORDER | WS_TABSTOP | WS_CHILD, 58, 78, 152, 12
+    CONTROL "Cancel", ID_CANCEL, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 138, 94, 42, 12
+END
+
+COPYERROR DIALOG PRELOAD FIXED 11, 18, 160, 60
+CAPTION "File Copy Error"
+STYLE WS_BORDER | WS_CAPTION | DS_MODALFRAME | WS_SYSMENU | WS_POPUP
+FONT 8 "Helv"
+BEGIN
+           CONTROL "", ID_STATUS1, "static", SS_CENTER | WS_CHILD, 1, 5, 158, 36
+
+           CONTROL "&Retry",  ID_RETRY,  "button", BS_DEFPUSHBUTTON | WS_TABSTOP | WS_CHILD, 22, 43, 36, 14
+	   CONTROL "&Ignore", ID_IGNORE, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD,    62, 43, 36, 14
+           CONTROL "&Exit",  ID_ABORT,  "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD,   100, 43, 36, 14
+END
+
+INSERTD DIALOG PRELOAD FIXED 11, 18, 182, 76
+CAPTION "dialog.caption"
+STYLE WS_BORDER | WS_CAPTION | DS_MODALFRAME | WS_SYSMENU | WS_POPUP
+FONT 8 "Helv"
+BEGIN
+           CONTROL "", ID_EDIT, "edit", ES_LEFT | WS_BORDER | WS_TABSTOP | WS_CHILD, 5, 36, 167, 12
+           CONTROL "OK", ID_OK, "button", BS_DEFPUSHBUTTON | WS_TABSTOP | WS_CHILD, 98, 54, 35, 14
+           CONTROL "Cancel", ID_CANCEL, "button", WS_TABSTOP | WS_CHILD, 137, 54, 35, 14
+	   CONTROL "Install needs the following disk", 110, "static", SS_LEFT | WS_CHILD, 37, 1, 143, 12
+           CONTROL "", ID_TEXT, "static", SS_LEFT | WS_CHILD, 37, 10, 135, 8
+           CONTROL "Disk", 105, "static", SS_ICON | WS_CHILD, 5, 1, 18, 21
+END
+
+DLG_PROGRESS DIALOG PRELOAD FIXED 52, 30, 196, 105
+CAPTION "dialog.caption"
+STYLE WS_BORDER | WS_CAPTION | WS_SYSMENU | DS_MODALFRAME | WS_POPUP
+FONT 8, "Helv"
+BEGIN
+    CONTROL "Text", ID_BAR,     PRO_CLASS, WS_CHILD,               5, 65, 180, 15
+    CONTROL "Text", ID_STATUS1, "stext",   SS_NOPREFIX | WS_CHILD, 3, 4, 189, 10
+    CONTROL "Text", ID_STATUS2, "stext",   SS_NOPREFIX | WS_CHILD, 3, 16, 190, 10
+    CONTROL "Text", ID_STATUS3, "stext",   SS_NOPREFIX | WS_CHILD, 3, 28, 190, 10
+    CONTROL "Text", ID_STATUS4, "stext",   SS_NOPREFIX | WS_CHILD, 3, 40, 190, 10
+    CONTROL "Press F3 to exit Install.", -1, "static", SS_LEFT | WS_CHILD, 4, 53, 177, 9
+    CONTROL "Cancel", ID_CANCEL,"button",  BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 75, 86, 41, 14
+END
+
+/*
+ *  random strings used in the code
+ */
+STRINGTABLE PRELOAD FIXED
+BEGIN
+   IDS_NOINF	      ,"Cannot find the APPSETUP.INF file necessary to run Install; check to ensure that the file is on the default path."
+   IDS_NOINFMEM       ,"Insufficient memory to run Install; close one or more Windows applications to increase available memory and try again."
+   IDS_APPNAME	      ,"Application Install Template"
+   IDS_WAITCOPY       ,"Install is copying files..."
+   IDS_COPYING 	      ,"Copying %s"
+   IDS_WINCOPY        ,"app.copy.appstuff"
+   IDS_OUTOFDISK      ,"Insufficient disk space; exit Install and delete one or more files to increase available disk space.\n"
+   IDS_BUILDPMG       ,"Building Program Manager Groups..."
+   IDS_PROGMAN_GROUP  ,"progman.groups"
+   IDS_DISKS          ,"disks"
+   IDS_INFNAME        ,"appsetup.inf"
+   IDS_DISKSPACE      ,"needed.space.minspace"
+   IDS_DEFAULT_DIR    ,"data.defdir"
+   IDS_EXITMSG        ,"Application installation is not yet complete.\nAre you sure you want to exit Install ?"
+   IDS_EXITCAPTION    ,"Install Error"
+   IDS_NEEDROOM       ,"Insufficent disk space on\nspecified destination drive."
+   IDS_FINISHED       ,"Application installation complete."
+END
+
+/*
+ *  DOS error names
+ */
+STRINGTABLE PRELOAD FIXED
+BEGIN
+    IDS_ERROR                       ,"DOS Error #%d"
+    IDS_ERROR + ERROR_FILENOTFOUND  ,"File not found; unable to copy file"
+    IDS_ERROR + ERROR_PATHNOTFOUND  ,"Path not found; unable to copy file"
+    IDS_ERROR + ERROR_NOFILEHANDLES ,"Too many open files"
+    IDS_ERROR + ERROR_ACCESSDENIED  ,"Access denied; unable to copy file"
+    IDS_ERROR + ERROR_NOMEMORY      ,"Insufficient memory"
+    IDS_ERROR + ERROR_DISKINVALID   ,"Disk drive invalid"
+    IDS_ERROR + ERROR_WRITE         ,"Write error; unable to copy file"
+    IDS_ERROR + ERROR_SHARE         ,"Network error; unable to copy file"
+END

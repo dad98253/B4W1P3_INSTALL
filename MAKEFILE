@@ -1,0 +1,64 @@
+#
+################### Makefile for setup utility ##################
+#
+
+NAME = install
+
+#
+################### These macros are for retail #################
+#
+
+DEF =
+CC  = cl -c -W2 -AS -Gsw -Zp -Oas $(DEF)
+DEFFILE=install.def
+LINK  = link /NOE/MAP/NOD/ALIGN:16
+PACK  =
+MASM  = masm -Mx $(DEF)
+
+#
+################### These macros are for debug ##################
+#
+
+#DEF = -DDEBUG
+#CC  = cl -c -W2 -AS -Gsw -Zdip -Od $(DEF)
+#DEFFILE=install.def
+#LINK  = link /NOE/CO/LI/MAP/NOD/ALIGN:16
+#PACK = cvpack -p $(NAME).exe
+#MASM  = masm -Mx -Zi $(DEF)
+
+
+RC    = rc $(DEF)
+
+LIBS = slibcew libw .\wslib\wprintf .\wslib\install.lib
+OBJ  = install.obj
+INC1 = .\wslib\gauge.h .\wslib\progdde.h .\wslib\sulib.h
+INC2 = .\wslib\winenv.h .\wslib\wprintf.h .\wslib\ws.h .\wslib\wsrc.h
+
+ASM = $(MASM) -DSEGNAME=$(SEG) $*.asm ;
+
+#
+################### Standard inference rules ####################
+#
+
+.c.obj:
+        $(CC) -NT _WINSETUP $*.c
+
+.asm.obj:
+	$(ASM) $*;
+
+#
+############################# Depends ###########################
+#
+
+all: $(NAME).exe
+
+install.obj: install.c install.h .\wslib\gauge.h .\wslib\progdde.h \
+	     .\wslib\ws.h .\wslib\wprintf.h .\wslib\sulib.h .\wslib\winenv.h
+
+$(NAME).res: install.rc install.ico
+	$(RC) -r install.rc
+
+$(NAME).exe: $(OBJ) $(NAME).res $(DEFFILE) $(INC1) $(INC2) .\wslib\wprintf.lib .\wslib\install.lib
+	$(LINK) $(OBJ),$(NAME),$(NAME),$(LIBS),$(DEFFILE)
+	$(RC) -30 $(NAME).res
+	mapsym $(NAME).map

@@ -1,0 +1,57 @@
+#
+################### Makefile for Install LIB ##################
+#
+
+NAME = install
+
+#
+################### These macros are for retail #################
+#
+
+DEF =
+CC  = cl -c -W2 -AS -Gsw -Zp -Oas $(DEF)
+MASM  = masm -Mx $(DEF)
+
+#
+################### These macros are for debug ##################
+#
+
+#DEF = -DDEBUG
+#CC  = cl -c -W2 -AS -Gsw -Zdip -Od $(DEF)
+#MASM  = masm -Mx -Zi $(DEF)
+
+
+
+LIBS = slibcew libw wprintf
+OBJ  = gauge.obj progdde.obj copy.obj infparse.obj dos.obj
+ASM = $(MASM) -DSEGNAME=$(SEG) $*.asm ;
+
+#
+################### Standard inference rules ####################
+#
+
+.c.obj:
+        $(CC) -NT _WINSETUP $*.c
+
+.asm.obj:
+	$(ASM) $*;
+
+#
+############################# Depends ###########################
+#
+
+all: $(NAME).lib
+
+copy.obj: copy.c gauge.h progdde.h ws.h wprintf.h ..\install.h  sulib.h
+
+gauge.obj: gauge.c gauge.h ..\install.h ws.h wprintf.h
+
+infparse.obj: infparse.c sulib.h
+
+progdde.obj: progdde.c gauge.h progdde.h ws.h wprintf.h ..\install.h sulib.h
+
+dos.obj: dos.asm
+
+$(NAME).lib: $(OBJ)
+	del $(NAME).lib
+        lib $(NAME).lib +$(OBJ);

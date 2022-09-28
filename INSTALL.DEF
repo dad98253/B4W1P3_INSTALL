@@ -1,0 +1,21 @@
+NAME	Install
+
+DESCRIPTION 'Copyright (C) 1991, Nehemiah Ministries'
+
+STUB	'setuSTUB.EXE'
+EXETYPE WINDOWS
+
+CODE	PRELOAD FIXED
+DATA	PRELOAD FIXED MULTIPLE
+
+HEAPSIZE  4024
+STACKSIZE 8192
+
+EXPORTS
+   AppWndProc
+   wsInstallDlg    
+   wsDiskDlg       
+   wsErrorDlg      
+   ProDlgProc      
+   ProBarProc      
+   ddeWndProc

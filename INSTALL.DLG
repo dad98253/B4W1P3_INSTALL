@@ -1,0 +1,61 @@
+25 DIALOG PRELOAD FIXED 104, 49, 114, 54
+FONT 8, "Helv"
+STYLE WS_DLGFRAME | WS_POPUP
+BEGIN
+    CONTROL "Application installation is not yet complete. Are you sure you want to exit Install?", -1, "static", SS_LEFT | WS_CHILD, 7, 5, 104, 28
+    CONTROL "OK", 1, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 14, 35, 28, 14
+    CONTROL "Cancel", 2, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 68, 35, 27, 14
+END
+
+19 DIALOG PRELOAD FIXED 11, 18, 160, 60
+CAPTION "File Copy Error"
+FONT 8, "Helv"
+STYLE WS_BORDER | WS_CAPTION | WS_DLGFRAME | WS_SYSMENU | DS_MODALFRAME | WS_POPUP
+BEGIN
+    CONTROL "", 4001, "static", SS_CENTER | WS_CHILD, 1, 5, 158, 36
+    CONTROL "&Retry", 5, "button", BS_DEFPUSHBUTTON | WS_TABSTOP | WS_CHILD, 22, 43, 36, 14
+    CONTROL "&Ignore", 6, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 62, 43, 36, 14
+    CONTROL "&Exit", 4, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 100, 43, 36, 14
+END
+
+16 DIALOG PRELOAD FIXED 11, 18, 182, 76
+CAPTION "dialog.caption"
+FONT 8, "Helv"
+STYLE WS_BORDER | WS_CAPTION | WS_DLGFRAME | WS_SYSMENU | DS_MODALFRAME | WS_POPUP
+BEGIN
+    CONTROL "", 11, "edit", ES_LEFT | WS_BORDER | WS_TABSTOP | WS_CHILD, 5, 36, 167, 12
+    CONTROL "OK", 1, "button", BS_DEFPUSHBUTTON | WS_TABSTOP | WS_CHILD, 98, 54, 35, 14
+    CONTROL "Cancel", 2, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 137, 54, 35, 14
+    CONTROL "Setup needs the following disk", 110, "static", SS_LEFT | WS_CHILD, 37, 1, 143, 12
+    CONTROL "", 12, "static", SS_LEFT | WS_CHILD, 37, 10, 135, 8
+    CONTROL "Disk", 105, "static", SS_ICON | WS_CHILD, 5, 1, 18, 21
+END
+
+400 DIALOG PRELOAD FIXED 52, 30, 196, 105
+CAPTION "dialog.caption"
+FONT 8, "Helv"
+STYLE WS_BORDER | WS_CAPTION | WS_DLGFRAME | WS_SYSMENU | DS_MODALFRAME | WS_POPUP
+BEGIN
+    CONTROL "Text", 401, "pro", 0 | WS_CHILD, 5, 65, 180, 15
+    CONTROL "Text", 4001, "stext", 128 | WS_CHILD, 3, 4, 189, 10
+    CONTROL "Text", 4002, "stext", 128 | WS_CHILD, 3, 16, 190, 10
+    CONTROL "Text", 4003, "stext", 128 | WS_CHILD, 3, 28, 190, 10
+    CONTROL "Text", 4004, "stext", 128 | WS_CHILD, 3, 40, 190, 10
+    CONTROL "Press F3 to exit Install.", -1, "static", SS_LEFT | WS_CHILD, 4, 53, 177, 9
+    CONTROL "Cancel", 2, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 75, 86, 41, 14
+END
+
+DLG_WINSETUP DIALOG PRELOAD FIXED 20, 31, 234, 111
+CAPTION "dialog.caption"
+FONT 8, "Helv"
+STYLE WS_BORDER | WS_CAPTION | WS_DLGFRAME | WS_SYSMENU | DS_MODALFRAME | WS_POPUP
+BEGIN
+    CONTROL "Installing Bible for Windows:", -1, "static", SS_LEFT | WS_CHILD, 24, 6, 192, 9
+    CONTROL "Continue", ID_OK, "button", BS_DEFPUSHBUTTON | WS_TABSTOP | WS_CHILD, 48, 94, 42, 12
+    CONTROL "Setup will install into the following directory, which it will create on your hard disk.", 103, "static", SS_LEFT | WS_CHILD, 24, 18, 200, 19
+    CONTROL "If you want to install Bible for Windows in a different directory and/or drive. Type the name of the directory.", 104, "static", SS_LEFT | WS_CHILD, 24, 36, 200, 28
+    CONTROL "Click Continue to begin the installation.", 105, "static", SS_LEFT | WS_CHILD, 24, 65, 162, 8
+    CONTROL "Copy to:", 107, "static", SS_LEFT | WS_CHILD, 24, 79, 30, 8
+    CONTROL "", ID_EDIT1, "edit", ES_LEFT | ES_UPPERCASE | WS_BORDER | WS_TABSTOP | WS_CHILD, 58, 78, 152, 12
+    CONTROL "Cancel", ID_CANCEL, "button", BS_PUSHBUTTON | WS_TABSTOP | WS_CHILD, 138, 94, 42, 12
+END
