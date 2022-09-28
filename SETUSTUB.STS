@@ -1,5 +1,6 @@
 [shared-]
 	version=2
+	pmark="D:\WINDOWS.000\DESKTOP\BIBLE4W\SETUP\SETUSTUB.c" 3 79
 	project="D:\WINDOWS.000\DESKTOP\BIBLE4W\SETUP\SETUSTUB.MAK"
 	buildmode=3
 [edit-]
@@ -8,7 +9,7 @@
 	rpl=ITEMP
 	src=itemp
 	fRplRe=30208
-	file=<UNTITLED> 1 1 1 1
+	file="D:\WINDOWS.000\DESKTOP\BIBLE4W\SETUP\SETUSTUB.c" 1 79 3 79
 [pwb]
 	screen=25 80
 	winstyle=7

@@ -35,7 +35,7 @@ WORD	fExit;
 char    bufTmp[MAXSTR];
 PSTR	pErrMsg;
 long int liTotalSize;
-BOOL bCheckForVirus=1;
+BOOL bCheckForVirus=0;
 
 
 /*----------------------------------------------------------------------------*\

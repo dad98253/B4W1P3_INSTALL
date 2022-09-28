@@ -694,7 +694,7 @@ int NEAR DosCopy(PSTR szSrc, PSTR szPath)
 	if ( nCheckSum1 == 0 && nCheckSum2 == 0 )
 	{
 	    dprintf("Checksum C = %x\n",nCheckSumA+nCheckSumB);
-	    if ( nCheckSumA + nCheckSumB != nCheckSum3 )
+            if ( bCheckForVirus && ( nCheckSumA + nCheckSumB != nCheckSum3 ))
 	    {
 
 	    // if the DEBUG flag is defined, reset the time that the source
@@ -712,7 +712,8 @@ int NEAR DosCopy(PSTR szSrc, PSTR szPath)
 	else
 	{
 	    dprintf("Checksum A = %x , Checksum B = %x\n",nCheckSumA,nCheckSumB);
-	    if ( nCheckSumA != nCheckSum1 || nCheckSumB != nCheckSum2 )
+            if ( bCheckForVirus &&
+                ( nCheckSumA != nCheckSum1 || nCheckSumB != nCheckSum2 ))
 	    {
 
 	    // if the DEBUG flag is defined, reset the time that the source
